@@ -1,6 +1,7 @@
 # CIS 103: Fundamentals of Programming
 # Lab 4: Python Practice – Group Assignment
 # Due Date: 10/05/2024 @ 11:59pm
+# Instructor: MD Ali
 # Presentation Date: 09/28/2024 @ 10:00am
 
 
@@ -49,7 +50,7 @@ def game():
 # the loop and ends the game
                 print("Goodbye")
                 break
-# Repeat the same process for the player 2 input
+# Repeat the same process for the player 2 input if the input is 4
             player2_choice = int(input("Player 2, select a weapon! Press 4 to exit:"))
             if player2_choice == 4:
                 print(f"Score: Player 1: {score_player1}  Player 2: {score_player2}")

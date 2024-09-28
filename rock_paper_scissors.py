@@ -1,21 +1,46 @@
-# CIS 103: Fundamentals of Programming
-# Lab 4: Python Practice – Group Assignment
-# Due Date: 10/05/2024 @ 11:59pm
-# Instructor: MD Ali
-# Presentation Date: 09/28/2024 @ 10:00am
+import random
 
+def choose_game():
+    while True:
+        print("Welcome to Rock, Paper, Scissors!")
+        print("What game do you want to play?")
+        print("1. Player vs Player")
+        print("2. Player vs Computer")
+        print("3. Computer vs Computer")
+        print("4. Exit the game")
+        try:
+            game_choice = int(input("Select your game by pressing 1, 2, 3 or 4 to exit :"))
+            if game_choice == 1:
+                player_vs_computer()
 
+            if game_choice == 2:
+                user_vs_computer()
 
-# Show a greeting message and explain the rules of the game
-print("Welcome to Rock, Paper, Scissors!")
-print("First player to win 5 rounds wins the game")
-print("Select your weapon by pressing 1, 2, or 3")
-print("Press 4 to exit the game")
+            if game_choice == 3:
+                computer_vs_computer()
+
+            if game_choice == 4:
+                print("Thank you for playing")
+                break
+            if game_choice != [1, 2, 3, 4]:
+                print("Invalid game choice")
+                print("Try again")
+                continue
+        except ValueError:
+            print("Invalid game choice")
+            print("Try again")
+            continue
+
 
 # Start a game function
-def game():
+def player_vs_computer():
+# Show a greeting message and explain the rules of the game
+    print("Welcome to Rock, Paper, Scissors, Player vs Player!")
+    print("First player to win 3 rounds wins the game")
+    print("Select your weapon by pressing 1, 2, or 3")
+    print("Press 4 to exit the game")
 # These variables are created to keep the players' scores before the while loop in order for the
-# scores to be updated, instead of being set with the same value if it was within the while loop
+# scores to be updated, instead of being set with the same value if they were within the while loop
     score_player1 = 0
     score_player2 = 0
 # Start a while loop, allowing the players to play multiple rounds until the score of 5 is met, or if
@@ -103,16 +128,105 @@ def game():
 # When player 1 score or player 2 score reaches 5, this player is declared winner of the game, print
 # a message to thank the players for participating and print another farewell message. The break statement
 # exit the loop and ends the game
-        if score_player1 == 5:
+        if score_player1 == 3:
             print("Player 1 is the winner!")
             print("Thank you for playing Rock, Paper, Scissors")
             print("Goodbye")
             break
 
-        if score_player2 == 5:
+        if score_player2 == 3:
             print("Player 2 is the winner!")
             print("Thank you for playing Rock, Paper, Scissors")
             print("Goodbye")
             break
-# Call the game function to start the game
-game()
+
+
+
+def user_vs_computer():
+    print("Welcome to Rock, Paper, Scissors, Player vs Computer(Kilroy)!")
+    playing = True
+    user_score = 0
+    computer_score = 0
+    while playing:
+        user_action = input("Choose your weapon (rock, paper, scissors)or q to quit:").lower()
+        if user_action == "q":
+            print(f"Score: Player: {user_score} Kilroy: {computer_score}")
+            if user_score > computer_score:
+                print("You win")
+
+            if user_score == computer_score:
+                print("It's a draw")
+
+            if user_score < computer_score:
+                print("K.O. You lose the game")
+            break
+
+        possible_actions = ["rock", "paper", "scissors", "q"]
+        computer_possible_actions = ["rock", "paper", "scissors"]
+        if user_action not in possible_actions:
+            print("Invalid choice")
+            continue
+        computer_action = random.choice(computer_possible_actions)
+        print(f"Your weapon {user_action}")
+        print(f"Kilroy's weapon {computer_action}")
+        if user_action == computer_action:
+            print("it's Draw!")
+        elif user_action == "rock" and computer_action == "scissors":
+            print("You Win!")
+            user_score += 1
+        elif user_action == "paper" and computer_action == "rock":
+            print("You Win!")
+            user_score += 1
+        elif user_action == "scissors" and computer_action == "paper":
+            print("You Win!")
+            user_score += 1
+        else:
+            print("K.O. You Lose")
+        computer_score += 1
+
+        print(f"Score: User: {user_score}  Computer: {computer_score}")
+        if user_score == 3:
+            print("You are the winner!")
+            playing = False
+            print("Don't be afraid to come back for more")
+        if computer_score == 3:
+            print("Kilroy is the winner!")
+            playing = False
+            print("Don't be afraid to come back for more")
+
+
+
+
+def computer_vs_computer():
+    print("Welcome to Rock, Paper, Scissors, Computer 1 vs Computer 2!")
+    print("First to win 10 rounds wins the game")
+    computer1_score = 0
+    computer2_score = 0
+    while True:
+        possible_choices = ["Rock", "Paper", "Scissors"]
+        computer1_choice = random.choice(possible_choices)
+        computer2_choice = random.choice(possible_choices)
+        print(f"Computer 1 chose {computer1_choice} and Computer 2 chose {computer2_choice}")
+        if computer1_choice == "Rock" and computer2_choice == "Scissors":
+            computer1_score += 1
+            print("Computer 1 wins")
+        if computer1_choice == "Paper" and computer2_choice == "Rock":
+            computer1_score += 1
+            print("Computer 1 wins")
+        if computer1_choice == "Scissors" and computer2_choice == "Paper":
+            computer1_score += 1
+            print("Computer 1 wins")
+        else:
+            computer2_score += 1
+            print("computer 2 wins")
+        print(f"Score: Computer 1: {computer1_score}  Computer 2: {computer2_score}")
+        if computer1_score == 10:
+            print("Computer 1 is the winner")
+            break
+        if computer2_score == 10:
+            print("Computer 2 is the winner")
+            break
+
+
+
+choose_game()

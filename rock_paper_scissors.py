@@ -11,13 +11,16 @@ def choose_game():
         try:
             game_choice = int(input("Select your game by pressing 1, 2, 3 or 4 to exit :"))
             if game_choice == 1:
-                player_vs_computer()
+                player_vs_player()
+                continue
 
             if game_choice == 2:
                 user_vs_computer()
+                continue
 
             if game_choice == 3:
                 computer_vs_computer()
+                continue
 
             if game_choice == 4:
                 print("Thank you for playing")
@@ -33,7 +36,7 @@ def choose_game():
 
 
 # Start a game function
-def player_vs_computer():
+def player_vs_player():
 # Show a greeting message and explain the rules of the game
     print("Welcome to Rock, Paper, Scissors, Player vs Player!")
     print("First player to win 3 rounds wins the game")
@@ -159,6 +162,7 @@ def user_vs_computer():
 
             if user_score < computer_score:
                 print("K.O. You lose the game")
+            print("Don't be afraid to come back for more")
             break
 
         possible_actions = ["rock", "paper", "scissors", "q"]

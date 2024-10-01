@@ -1,34 +1,46 @@
+# Import the random module for the computer choices
 import random
-
+# Define the function to choose the game mode
 def choose_game():
+# Start a while loop that allows the user to choose a game mode, come out of this game mode and
+# choose another game mode
     while True:
+# Print a greeting message and the game modes
         print("Welcome to Rock, Paper, Scissors!")
         print("What game do you want to play?")
         print("1. Player vs Player")
         print("2. Player vs Computer")
         print("3. Computer vs Computer")
         print("4. Exit the game")
+# Use the try block to handle any errors in the inputs
         try:
+# Take the user input and return a game as a result
             game_choice = int(input("Select your game by pressing 1, 2, 3 or 4 to exit :"))
             if game_choice == 1:
+# Call the player_vs_player function id the user input is 1, when the user exits the player_vs_player
+# function, the continue statement will skip the rest of the program and go back to the menu to choose a game
                 player_vs_player()
                 continue
-
+# Call the user_vs_computer if the user's choice is 2
             if game_choice == 2:
                 user_vs_computer()
                 continue
-
+# Call the computer_vs_computer if the user's choice is 3
             if game_choice == 3:
                 computer_vs_computer()
                 continue
-
+# If te user's choice is 4, print a farewell message and exit the loop through the break statement
             if game_choice == 4:
                 print("Thank you for playing")
                 break
+# if the user's choice is not between 1 and 4, print an "Invalid game choice" message and ask the user
+# to try again
             if game_choice != [1, 2, 3, 4]:
                 print("Invalid game choice")
                 print("Try again")
                 continue
+# If any errors happened during the user input, the except block would catch it
+# and return an invalid choice message and ask the user to try again
         except ValueError:
             print("Invalid game choice")
             print("Try again")
@@ -46,7 +58,7 @@ def player_vs_player():
 # scores to be updated, instead of being set with the same value if they were within the while loop
     score_player1 = 0
     score_player2 = 0
-# Start a while loop, allowing the players to play multiple rounds until the score of 5 is met, or if
+# Start a while loop, allowing the players to play multiple rounds until the score of 3 is met, or if
 # a player decides to exit the game
     while True:
 # Print the players options
@@ -128,7 +140,7 @@ def player_vs_player():
             score_player2 += 1
             print("Player 2 wins this round!")
             print(f"Score: Player 1: {score_player1}  Player 2: {score_player2}")
-# When player 1 score or player 2 score reaches 5, this player is declared winner of the game, print
+# When player 1 score or player 2 score reaches 3, this player is declared winner of the game, print
 # a message to thank the players for participating and print another farewell message. The break statement
 # exit the loop and ends the game
         if score_player1 == 3:
@@ -144,12 +156,19 @@ def player_vs_player():
             break
 
 
-
+# Define the user vs computer function
 def user_vs_computer():
+    # Show a greeting message and explain the rules of the game
     print("Welcome to Rock, Paper, Scissors, Player vs Computer(Kilroy)!")
+    print("First player to win 3 rounds wins the game")
+# Assign the boolean value True to the variable playing
     playing = True
+# These variables are created to keep the players' scores before the while loop in order for the
+# scores to be updated, instead of being set with the same value if they were within the while loop
     user_score = 0
     computer_score = 0
+# Start a while loop, allowing the players to play multiple rounds until the score of 3 is met, or if
+# a player decides to exit the game
     while playing:
         user_action = input("Choose your weapon (rock, paper, scissors)or q to quit:").lower()
         if user_action == "q":

@@ -1,3 +1,21 @@
+# Romain Tranchant - Elysee Fleurant - Ashley Nunez - Edward McBride
+# Instructor: MD Ali
+# CIS 103: Fundamentals of Programming
+# Lab 4: Python Practice – Group Assignment
+# Due Date: 10/05/2024 @ 11:59pm
+# Presentation Date: 09/28/2024 @ 10:00am
+
+
+# Rock, Paper, Scissors Game
+# • Build a two-player or player-vs-computer Rock, Paper, Scissors game. The game should allow for
+# multiple rounds and declare a winner at the end.
+# • Bonus: Keep track of player scores and display a final scoreboard.
+# • Focus Areas: Functions, loops, conditional statements, and randomness (random module).
+
+
+###############################################################################################
+
+
 # Import the random module for the computer choices
 import random
 # Define the function to choose the game mode
@@ -170,30 +188,49 @@ def user_vs_computer():
 # Start a while loop, allowing the players to play multiple rounds until the score of 3 is met, or if
 # a player decides to exit the game
     while playing:
-        user_action = input("Choose your weapon (rock, paper, scissors)or q to quit:").lower()
-        if user_action == "q":
-            print(f"Score: Player: {user_score} Kilroy: {computer_score}")
-            if user_score > computer_score:
-                print("You win")
+# Use the try block to handle any errors in the player's input
+        try:
+# Get the user input, choices are rock, paper, scissors, or q to quit the game
+            user_action = input("Choose your weapon (rock, paper, scissors)or q to quit:").lower()
+# If the user choose to quit, print the score of the game and choose a winner depending on the score
+# of the player and the computer and the break statement terminates the game
+            if user_action == "q":
+                print(f"Score: Player: {user_score} Kilroy: {computer_score}")
+                if user_score > computer_score:
+                    print("You win")
 
-            if user_score == computer_score:
-                print("It's a draw")
+                if user_score == computer_score:
+                    print("It's a draw")
 
-            if user_score < computer_score:
-                print("K.O. You lose the game")
-            print("Don't be afraid to come back for more")
-            break
-
-        possible_actions = ["rock", "paper", "scissors", "q"]
-        computer_possible_actions = ["rock", "paper", "scissors"]
-        if user_action not in possible_actions:
+                if user_score < computer_score:
+                    print("K.O. You lose the game")
+                print("Don't be afraid to come back for more")
+                break
+# If any errors happened during any players inputs, the except block would catch it
+# and return an invalid choice message and skips the rest of the program through the continue statement
+        except ValueError:
             print("Invalid choice")
             continue
+# The possibles choices for the user are rock, paper, scissors ,and q but the possibles choices for
+# the computer are only rock, paper, or scissors, only the user can quit the game
+        possible_actions = ["rock", "paper", "scissors", "q"]
+        computer_possible_actions = ["rock", "paper", "scissors"]
+# If the user input is not in the possible action, print an invalid choice message and the continue
+# statement skips the rest of the program to restart the loop
+        if user_action not in possible_actions:
+                print("Invalid choice")
+                continue
+# The computer choice is a random choice made from the computer possible actions
         computer_action = random.choice(computer_possible_actions)
+# Print the user and the computer choices
         print(f"Your weapon {user_action}")
         print(f"Kilroy's weapon {computer_action}")
+# If the user's choice and the computer's choice are the same , print a "it's a draw" message and
+# no points are added
         if user_action == computer_action:
             print("it's Draw!")
+# These are the three combinations that make the user as a winner, increase the user's scobe by 1 and
+# print a "You win" message
         elif user_action == "rock" and computer_action == "scissors":
             print("You Win!")
             user_score += 1
@@ -203,11 +240,15 @@ def user_vs_computer():
         elif user_action == "scissors" and computer_action == "paper":
             print("You Win!")
             user_score += 1
+# If it is not a draw and the user is not the winner, the computer is the winner, print a "K.O you lose"
+# message and increase the computer score by 1
         else:
             print("K.O. You Lose")
         computer_score += 1
-
+# Print the updated scores after a winner is chosen
         print(f"Score: User: {user_score}  Computer: {computer_score}")
+# When the user score or the computer score reaches 3, this player is declared winner of the game. The playing
+# variable turn False and the loop terminates
         if user_score == 3:
             print("You are the winner!")
             playing = False
@@ -219,17 +260,25 @@ def user_vs_computer():
 
 
 
-
+# Define the computer vs computer function
 def computer_vs_computer():
+    # Show a greeting message and explain the rules of the game
     print("Welcome to Rock, Paper, Scissors, Computer 1 vs Computer 2!")
     print("First to win 10 rounds wins the game")
+# Set the computer1 and computer2 scores
     computer1_score = 0
     computer2_score = 0
+# Start a while loop to allow multiple rounds
     while True:
+# Set the possible choices
         possible_choices = ["Rock", "Paper", "Scissors"]
+# The choices of computer1 and computer2 are made randomly from the list of possibles choices
         computer1_choice = random.choice(possible_choices)
         computer2_choice = random.choice(possible_choices)
+# Print the choices made by the computers
         print(f"Computer 1 chose {computer1_choice} and Computer 2 chose {computer2_choice}")
+# Winning combinations for computer1, print a "Computer 1 wins" message and increase the computer1' score
+# by 1
         if computer1_choice == "Rock" and computer2_choice == "Scissors":
             computer1_score += 1
             print("Computer 1 wins")
@@ -239,10 +288,18 @@ def computer_vs_computer():
         if computer1_choice == "Scissors" and computer2_choice == "Paper":
             computer1_score += 1
             print("Computer 1 wins")
+# If the computers' choice are the same , print a "it's a draw" message and
+# no points are added
+        if computer1_choice == computer2_choice:
+            print("It's a draw")
+# if computer1 is not the winner and it is not a draw, computer2 is the winner and increase its score by 1
         else:
             computer2_score += 1
             print("computer 2 wins")
+# Print the updated scores after a winner is chosen
         print(f"Score: Computer 1: {computer1_score}  Computer 2: {computer2_score}")
+# When a computer score reaches 10, this computer is declared winner of the game. The break statement
+# terminates the loop
         if computer1_score == 10:
             print("Computer 1 is the winner")
             break
@@ -250,6 +307,5 @@ def computer_vs_computer():
             print("Computer 2 is the winner")
             break
 
-
-
+# Call the choose_game function to start the game
 choose_game()

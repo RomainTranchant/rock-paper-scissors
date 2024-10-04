@@ -35,15 +35,15 @@ def choose_game():
 # Take the user input and return a game as a result
             game_choice = int(input("Select your game by pressing 1, 2, 3 or 4 to exit :"))
             if game_choice == 1:
-# Call the player_vs_player function id the user input is 1, when the user exits the player_vs_player
+# Call the player_vs_player function if the user input is 1, when the user exits the player_vs_player
 # function, the continue statement will skip the rest of the program and go back to the menu to choose a game
                 player_vs_player()
                 continue
-# Call the user_vs_computer if the user's choice is 2
+# Call the user_vs_computer function if the user's choice is 2
             if game_choice == 2:
                 user_vs_computer()
                 continue
-# Call the computer_vs_computer if the user's choice is 3
+# Call the computer_vs_computer function if the user's choice is 3
             if game_choice == 3:
                 computer_vs_computer()
                 continue

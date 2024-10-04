@@ -282,15 +282,15 @@ def computer_vs_computer():
         if computer1_choice == "Rock" and computer2_choice == "Scissors":
             computer1_score += 1
             print("Computer 1 wins")
-        if computer1_choice == "Paper" and computer2_choice == "Rock":
+        elif computer1_choice == "Paper" and computer2_choice == "Rock":
             computer1_score += 1
             print("Computer 1 wins")
-        if computer1_choice == "Scissors" and computer2_choice == "Paper":
+        elif computer1_choice == "Scissors" and computer2_choice == "Paper":
             computer1_score += 1
             print("Computer 1 wins")
 # If the computers' choice are the same , print a "it's a draw" message and
 # no points are added
-        if computer1_choice == computer2_choice:
+        elif computer1_choice == computer2_choice:
             print("It's a draw")
 # if computer1 is not the winner and it is not a draw, computer2 is the winner and increase its score by 1
         else:
